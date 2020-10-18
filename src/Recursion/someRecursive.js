@@ -13,12 +13,15 @@ const isOdd = (val) => val % 2 !== 0;
  * @returns { boolean}
  */
 function someRecursive(arr, isOdd) {
+  // check if there is element in array
   if (!arr.length) {
     return false;
   }
+  //check if first value of array is odd then return true
   if (isOdd(arr[0])) {
     return true;
   } else {
+    //if there are element available then remove one element and call to someRecursive
     return someRecursive(arr.slice(1), isOdd);
   }
 }

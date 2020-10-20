@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Recursion/recursiveRange.js</title>
+    <title>JSDoc: Source: Recursion/someRecursive.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Recursion/recursiveRange.js</h1>
+    <h1 class="page-title">Source: Recursion/someRecursive.js</h1>
 
     
 
@@ -26,22 +26,35 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- *  &lt;b> Topic - Recursion&lt;/b> &lt;br />
- *  Write a function called recursiveRange  which accepts a number and adds up all the
- *  numbers from 0 to the number passed to the function
- * @param {number} num Input number
- * @returns {number}
- *
+            <pre class="prettyprint source linenums"><code>/** Check if input value is odd
+ * @param {number} val - to check if it's odd
+ * @returns {boolean}
  */
-function recursiveRange(num) {
-  if (!num) {
-    return 0;
+const isOdd = (val) => val % 2 !== 0;
+/**
+ * Topic - Recursion
+ * Write a recursive function called someRecursive  which accepts an array and a callback.
+ * The function returns true if a single value in the array returns true when passed to the callback.
+ * Otherwise it returns false.
+ * @param {Array} arr -  input array to check
+ * @param {Function} isOdd - callback
+ * @returns { boolean}
+ */
+function someRecursive(arr, isOdd) {
+  // check if there is element in array
+  if (!arr.length) {
+    return false;
   }
-  return num + recursiveRange(--num);
+  //check if first value of array is odd then return true
+  if (isOdd(arr[0])) {
+    return true;
+  } else {
+    //if there are element available then remove one element and call to someRecursive
+    return someRecursive(arr.slice(1), isOdd);
+  }
 }
 
-console.log(recursiveRange(10));
+console.log(someRecursive([1, 2, 4], isOdd));
 </code></pre>
         </article>
     </section>

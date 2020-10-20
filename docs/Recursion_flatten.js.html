@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Recursion/recursiveRange.js</title>
+    <title>JSDoc: Source: Recursion/flatten.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Recursion/recursiveRange.js</h1>
+    <h1 class="page-title">Source: Recursion/flatten.js</h1>
 
     
 
@@ -27,21 +27,31 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- *  &lt;b> Topic - Recursion&lt;/b> &lt;br />
- *  Write a function called recursiveRange  which accepts a number and adds up all the
- *  numbers from 0 to the number passed to the function
- * @param {number} num Input number
- * @returns {number}
- *
+ * &lt;b>Topic - Recursion&lt;/b> &lt;br />
+ * Write a recursive function called flatten  which accepts an array of arrays and returns a new
+ * array with all values flattened.
+ * e.g flatten([1, 2, 3, [4, 5] ]) // [1, 2, 3, 4, 5]
+ * @param {Array} arr
+ * @returns {Array}
  */
-function recursiveRange(num) {
-  if (!num) {
-    return 0;
+function flatten(arr) {
+  //new array to store flat array
+  let newArr = [];
+  //loop through arr to get value
+  for (let i = 0; i &lt; arr.length; i++) {
+    //if current value of array is array then make a recursive call until we make it flat.
+    if (Array.isArray(arr[i])) {
+      newArr = newArr.concat(flatten(arr[i]));
+    } else {
+      //current value is alphanumeric character then push it on to array
+      newArr.push(arr[i]);
+      console.log(newArr);
+    }
   }
-  return num + recursiveRange(--num);
+  return newArr;
 }
 
-console.log(recursiveRange(10));
+console.log(flatten([1, 2, [[[3]]], [[[[[[[4]], [[[5]]]]]]]]]));
 </code></pre>
         </article>
     </section>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: prob_pattern/anagrams.js</title>
+    <title>JSDoc: Source: Recursion/stringifyNumbers.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: prob_pattern/anagrams.js</h1>
+    <h1 class="page-title">Source: Recursion/stringifyNumbers.js</h1>
 
     
 
@@ -26,41 +26,40 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * &lt;b> pattern - frequency counter &lt;/b> &lt;br/>
- * Given two strings, write a function to determine if the second string is an anagram of the first.
- *  An anagram is a word, phrase, or name formed by rearranging the letters of another, such as cinema ,
- *  formed from iceman.
- * @param {string} str1
- * @param {string} str2
- * @returns {boolean}
+            <pre class="prettyprint source linenums"><code>let obj1 = {
+  num: 1,
+  test: [],
+  data: {
+    val: 4,
+    info: {
+      isRight: true,
+      random: 66,
+    },
+  },
+};
+
+/**
+ * Write a function called stringifyNumbers  which takes in an object and finds all of the values
+ * which are numbers and converts them to strings.
+ * Recursion would be a great way to solve this!
+ * @param {Object} obj - Input object with number
+ * @returns {object} - Outputobject with stringified number
  */
-
-function validAnagram(str1, str2) {
-  let obj1 = {};
-  let obj2 = {};
-  //check the length of string 1 and string 2
-  if (str1.split("").length != str2.split("").length) {
-    return false;
-  }
-
-  //count number of character in string 1 and string 2
-  for (val of str1) {
-    obj1[val] = (obj1[val] || 0) + 1;
-  }
-  for (val of str2) {
-    obj2[val] = (obj2[val] || 0) + 1;
-  }
-  //check if each character frequency is same
-  for (key in obj1) {
-    if (obj1[key] !== obj2[key]) {
-      return false;
+function stringifyNumbers(obj) {
+  let newObj = {};
+  for (const key in obj) {
+    if (typeof obj[key] === "number") {
+      newObj[key] = obj[key].toString();
+    } else if (typeof obj[key] === "object" &amp;&amp; !Array.isArray(obj[key])) {
+      newObj[key] = stringifyNumbers(obj[key]);
+    } else {
+      newObj[key] = obj[key];
     }
   }
-  return true;
+  return newObj;
 }
 
-console.log(validAnagram("anagram", "nagaram"));
+console.log(stringifyNumber(obj1));
 </code></pre>
         </article>
     </section>

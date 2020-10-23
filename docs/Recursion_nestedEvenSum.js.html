@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: prob_pattern/anagrams.js</title>
+    <title>JSDoc: Source: Recursion/nestedEvenSum.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: prob_pattern/anagrams.js</h1>
+    <h1 class="page-title">Source: Recursion/nestedEvenSum.js</h1>
 
     
 
@@ -27,40 +27,45 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * &lt;b> pattern - frequency counter &lt;/b> &lt;br/>
- * Given two strings, write a function to determine if the second string is an anagram of the first.
- *  An anagram is a word, phrase, or name formed by rearranging the letters of another, such as cinema ,
- *  formed from iceman.
- * @param {string} str1
- * @param {string} str2
- * @returns {boolean}
+ * &lt;b> Topic - Recursion&lt;/b> &lt;br />
+ * Write a recursive function called nestedEvenSum .
+ * Return the sum of all even numbers in an object which may contain nested objects.
+ * @param {Object} obj - Input Object
+ * @returns {number} - Output in Number
  */
-
-function validAnagram(str1, str2) {
-  let obj1 = {};
-  let obj2 = {};
-  //check the length of string 1 and string 2
-  if (str1.split("").length != str2.split("").length) {
-    return false;
-  }
-
-  //count number of character in string 1 and string 2
-  for (val of str1) {
-    obj1[val] = (obj1[val] || 0) + 1;
-  }
-  for (val of str2) {
-    obj2[val] = (obj2[val] || 0) + 1;
-  }
-  //check if each character frequency is same
-  for (key in obj1) {
-    if (obj1[key] !== obj2[key]) {
-      return false;
+function nestedEvenSum(obj) {
+  let sum = 0;
+  for (const key in obj) {
+    if (typeof obj[key] === "object") {
+      sum += nestedEvenSum(obj[key]);
+    } else if (typeof obj[key] === "number" &amp;&amp; obj[key] % 2 === 0) {
+      sum += obj[key];
     }
   }
-  return true;
+  return sum;
 }
 
-console.log(validAnagram("anagram", "nagaram"));
+var obj1 = {
+  outer: 2,
+  obj: {
+    inner: 2,
+    otherObj: {
+      superInner: 2,
+      notANumber: true,
+      alsoNotANumber: "yup",
+    },
+  },
+};
+
+var obj2 = {
+  a: 2,
+  b: { b: 2, bb: { b: 3, bb: { b: 2 } } },
+  c: { c: { c: 2 }, cc: "ball", ccc: 5 },
+  d: 1,
+  e: { e: { e: 2 }, ee: "car" },
+};
+
+console.log(nestedEvenSum(obj1));
 </code></pre>
         </article>
     </section>

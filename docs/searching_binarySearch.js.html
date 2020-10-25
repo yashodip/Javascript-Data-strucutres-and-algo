@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: searching/binarySearch.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,51 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: searching/binarySearch.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * &lt;b> Topic - Searching Algorithms&lt;/b> &lt;br />
+ * Write a function called binarySearch  which accepts a sorted  array and a value and returns
+ * the index at which the value exists. Otherwise, return -1.
+ * @param {Array} arr
+ * @param {number} val
+ * @returns {number} Postion at which element found
+ */
+function binarySearch(arr, val) {
+  //init three variables - start middle end
+  let start = 0;
+  let end = arr.length - 1;
+  let middle = Math.floor((start + end) / 2);
+  //in Loop start : end
+  for (let i = 0; i &lt; arr.length; i++) {
+    //check if middle is equal to val
+    if (arr[middle] === val) {
+      //return position
+      return middle;
+    }
+    //calculate start and end and update middle accordingly
+    if (arr[middle] &lt; val) {
+      start = middle + 1;
+    } else {
+      end = middle - 1;
+    }
+    middle = Math.floor((start + end) / 2);
+  }
+  //not found
+  return -1;
+}
 
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+console.log(binarySearch([1, 2, 3, 4, 5], 2));
+</code></pre>
+        </article>
+    </section>
 
 
 

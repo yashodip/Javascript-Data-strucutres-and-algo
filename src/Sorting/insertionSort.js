@@ -1,3 +1,9 @@
+/**
+ * <b>Topic - Sorting algorithms </b><br/>
+ * Insertion Sort
+ * @param {Array} arr
+ * @returns {Array}
+ */
 function insertionSort(arr) {
   // for loop starts at 1 to array length
   for (let i = 1; i < arr.length; i++) {

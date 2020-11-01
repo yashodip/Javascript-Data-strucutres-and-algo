@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Recursion/power.js</title>
+    <title>JSDoc: Source: Sorting/selectionSort.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Recursion/power.js</h1>
+    <h1 class="page-title">Source: Sorting/selectionSort.js</h1>
 
     
 
@@ -27,31 +27,39 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * &lt;b> Topic - Recursion&lt;/b> &lt;br />
- * Write a function called power which accepts a base and an exponent. The function should return the power of
- * the base to the exponent. This function should mimic the functionality of Math.pow()
- * - do not worry about negative bases and exponents.
- * @param {number} base
- * @param {number} exp
- * @returns {number}
- *
+ * &lt;b> Topic - Sorting algorithms  &lt;/b> &lt;br />
+ * Selection Sort
+ * @param {Array} arr - input array
+ * @returns {Array} - Sorted array
  */
-
-function power(base, exp) {
-  //check if base is 0 ; return 0
-  if (base === 0) {
-    return 0;
+function selectionSort(arr) {
+  // swap function
+  const swap = (arr, idx1, idx2) => {
+    [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
+  };
+  //set min =i
+  //for loop from 0 to arr.length
+  for (let i = 0; i &lt; arr.length; i++) {
+    //set min =i
+    let min = i;
+    //for loop i to arr.length
+    for (let j = i + 1; j &lt; arr.length; j++) {
+      //check if min > arr[j]
+      if (arr[min] > arr[j]) {
+        //update the min
+        min = j;
+      }
+    }
+    //call swap if min and i are not same
+    if (i !== min) {
+      swap(arr, i, min);
+    }
   }
-  //check if exponent is 0 ; return 1
 
-  if (exp === 0) {
-    return 1;
-  }
-  //return base * power(base , exp-1)
-  return base * power(base, exp - 1);
+  return arr;
 }
 
-console.log(power(4, 5));
+console.log(selectionSort([0, 4, 3, 2, 6, 8, 7, 1]));
 </code></pre>
         </article>
     </section>

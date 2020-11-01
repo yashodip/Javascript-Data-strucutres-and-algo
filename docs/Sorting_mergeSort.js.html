@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Recursion/power.js</title>
+    <title>JSDoc: Source: Sorting/mergeSort.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Recursion/power.js</h1>
+    <h1 class="page-title">Source: Sorting/mergeSort.js</h1>
 
     
 
@@ -27,31 +27,41 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * &lt;b> Topic - Recursion&lt;/b> &lt;br />
- * Write a function called power which accepts a base and an exponent. The function should return the power of
- * the base to the exponent. This function should mimic the functionality of Math.pow()
- * - do not worry about negative bases and exponents.
- * @param {number} base
- * @param {number} exp
- * @returns {number}
+ * &lt;b>Topic - Sorting algorithms &lt;/b>&lt;br/>
+ * Merge Sort sorting example
  *
+ * @param {Array} arr Input  array
+ * @param {number} start starting point for sub array
+ * @param {number} end ending point for sub array
  */
 
-function power(base, exp) {
-  //check if base is 0 ; return 0
-  if (base === 0) {
-    return 0;
-  }
-  //check if exponent is 0 ; return 1
+function pivotHelper(arr, start = 0, end) {
+  const swap = (arr, i, j) => {
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  };
+  let pivot = arr[start];
+  let swapIdx = start;
 
-  if (exp === 0) {
-    return 1;
+  for (let i = start + 1; i &lt;= end; i++) {
+    if (pivot > arr[i]) {
+      swapIdx++;
+      swap(arr, swapIdx, i);
+    }
   }
-  //return base * power(base , exp-1)
-  return base * power(base, exp - 1);
+  swap(arr, start, swapIdx);
+  return swapIdx;
 }
 
-console.log(power(4, 5));
+function mergeSort(arr, left = 0, right = arr.length - 1) {
+  if (left &lt; right) {
+    let pivot = pivotHelper(arr, left, right);
+    mergeSort(arr, left, pivot - 1);
+    mergeSort(arr, pivot + 1, right);
+  }
+  return arr;
+}
+
+console.log(mergeSort([1, 4, 2, 3]));
 </code></pre>
         </article>
     </section>
